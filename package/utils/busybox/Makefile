@@ -148,7 +148,14 @@ endef
 
 define Package/busybox/install
 	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_DIR) $(1)/usr/sbin
+ifneq ($(CONFIG_BUSYBOX_$(BUSYBOX_SYM)_INSTALL_NO_USR),)
+	$(INSTALL_DIR) $(1)/bin
+	$(INSTALL_DIR) $(1)/sbin
+	# This link is used by Luci
+	ln -s -r -f $(1)/bin/busybox $(1)/usr/bin/env
+endif
 	$(CP) $(PKG_INSTALL_DIR)/* $(1)/
 	$(INSTALL_DIR) $(1)/etc/profile.d
 	$(INSTALL_BIN) ./files/busybox-history-file.sh $(1)/etc/profile.d
