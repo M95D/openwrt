@@ -1,0 +1,50 @@
+From ad4b62aa7da919538bf1a012492d929db553b706 Mon Sep 17 00:00:00 2001
+From: Mathew McBride <matt@traverse.com.au>
+Date: Thu, 22 Dec 2022 23:19:23 +0000
+Subject: [PATCH] block: autofs: do not generate events for the root partition
+
+This resolves an issue that occurs (mostly) when OpenWrt is booted
+directly from a mass storage device (e.g x86 or ARM EFI, SATA, NVMe etc.)
+and results in the system becoming unusable (everything but / is unmounted).
+
+When "block autofs start" is called (e.g by LuCI when editing system mounts),
+it was generating a "remove" hotplug event for the root device,
+causing the system to try to unmount the root partition.
+
+To resolve this issue, ensure no hotplug events are generated for
+the "/", just as we don't for the extroot usecases.
+
+Signed-off-by: Mathew McBride <matt@traverse.com.au>
+Link: https://forum.traverse.com.au/t/no-proc-mounts/209
+---
+ block.c | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
+
+diff --git a/block.c b/block.c
+index 4b45200..2a95846 100644
+--- a/block.c
++++ b/block.c
+@@ -1295,11 +1295,18 @@ static int main_autofs(int argc, char **argv)
+ 			if (m && m->extroot)
+ 				continue;
+ 
++			mp = find_mount_point(pr->dev);
++			if (mp && !strcmp(mp,"/")) {
++				free(mp);
++				continue;
++			}
++
+ 			blockd_notify("hotplug", pr->dev, m, pr);
+-			if ((!m || !m->autofs) && (mp = find_mount_point(pr->dev))) {
++			if ((!m || !m->autofs) && mp) {
+ 				blockd_notify("mount", pr->dev, NULL, NULL);
+-				free(mp);
+ 			}
++			if (mp)
++				free(mp);
+ 		}
+ 	} else {
+ 		if (argc < 4)
+-- 
+2.30.1
+
