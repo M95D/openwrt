@@ -57,39 +57,39 @@ endef
 $(eval $(call KernelPackage,acpi-video))
 
 define KernelPackage/backlight
-	SUBMENU:=$(VIDEO_MENU)
-	TITLE:=Backlight support
-	DEPENDS:=@DISPLAY_SUPPORT +kmod-fb
-	HIDDEN:=1
-	KCONFIG:=CONFIG_BACKLIGHT_CLASS_DEVICE \
-		CONFIG_BACKLIGHT_LCD_SUPPORT=y \
-		CONFIG_LCD_CLASS_DEVICE=n \
-		CONFIG_BACKLIGHT_GENERIC=n \
-		CONFIG_BACKLIGHT_ADP8860=n \
-		CONFIG_BACKLIGHT_ADP8870=n \
-		CONFIG_BACKLIGHT_OT200=n \
-		CONFIG_BACKLIGHT_PM8941_WLED=n
-	FILES:=$(LINUX_DIR)/drivers/video/backlight/backlight.ko
-	AUTOLOAD:=$(call AutoProbe,video backlight)
+  SUBMENU:=$(VIDEO_MENU)
+  TITLE:=Backlight support
+  DEPENDS:=@DISPLAY_SUPPORT +kmod-fb
+  HIDDEN:=1
+  KCONFIG:=CONFIG_BACKLIGHT_CLASS_DEVICE \
+	CONFIG_BACKLIGHT_LCD_SUPPORT=y \
+	CONFIG_LCD_CLASS_DEVICE=n \
+	CONFIG_BACKLIGHT_GENERIC=n \
+	CONFIG_BACKLIGHT_ADP8860=n \
+	CONFIG_BACKLIGHT_ADP8870=n \
+	CONFIG_BACKLIGHT_OT200=n \
+	CONFIG_BACKLIGHT_PM8941_WLED=n
+  FILES:=$(LINUX_DIR)/drivers/video/backlight/backlight.ko
+  AUTOLOAD:=$(call AutoProbe,video backlight)
 endef
 
 define KernelPackage/backlight/description
-	Kernel module for Backlight support.
+  Kernel module for Backlight support.
 endef
 
 $(eval $(call KernelPackage,backlight))
 
 define KernelPackage/backlight-pwm
-	SUBMENU:=$(VIDEO_MENU)
-	TITLE:=PWM Backlight support
-	DEPENDS:=@PWM_SUPPORT +kmod-backlight
-	KCONFIG:=CONFIG_BACKLIGHT_PWM
-	FILES:=$(LINUX_DIR)/drivers/video/backlight/pwm_bl.ko
-	AUTOLOAD:=$(call AutoProbe,video pwm_bl)
+  SUBMENU:=$(VIDEO_MENU)
+  TITLE:=PWM Backlight support
+  DEPENDS:=@PWM_SUPPORT +kmod-backlight
+  KCONFIG:=CONFIG_BACKLIGHT_PWM
+  FILES:=$(LINUX_DIR)/drivers/video/backlight/pwm_bl.ko
+  AUTOLOAD:=$(call AutoProbe,video pwm_bl)
 endef
 
 define KernelPackage/backlight-pwm/description
-	Kernel module for PWM based Backlight support.
+  Kernel module for PWM based Backlight support.
 endef
 
 $(eval $(call KernelPackage,backlight-pwm))
@@ -129,7 +129,7 @@ define KernelPackage/fb
 endef
 
 define KernelPackage/fb/description
- Kernel support for framebuffers and framebuffer console.
+  Kernel support for framebuffers and framebuffer console.
 endef
 
 define KernelPackage/fb/x86
@@ -150,7 +150,7 @@ define KernelPackage/fb-cfb-fillrect
 endef
 
 define KernelPackage/fb-cfb-fillrect/description
- Kernel support for software rectangle filling
+  Kernel support for software rectangle filling
 endef
 
 $(eval $(call KernelPackage,fb-cfb-fillrect))
@@ -166,7 +166,7 @@ define KernelPackage/fb-cfb-copyarea
 endef
 
 define KernelPackage/fb-cfb-copyarea/description
- Kernel support for software copy area
+  Kernel support for software copy area
 endef
 
 $(eval $(call KernelPackage,fb-cfb-copyarea))
@@ -181,7 +181,7 @@ define KernelPackage/fb-cfb-imgblt
 endef
 
 define KernelPackage/fb-cfb-imgblt/description
- Kernel support for software image blitting
+  Kernel support for software image blitting
 endef
 
 $(eval $(call KernelPackage,fb-cfb-imgblt))
@@ -210,7 +210,7 @@ define KernelPackage/fb-sys-fops
 endef
 
 define KernelPackage/fb-sys-fops/description
- Kernel support for framebuffer sys ops
+  Kernel support for framebuffer sys ops
 endef
 
 $(eval $(call KernelPackage,fb-sys-fops))
@@ -232,7 +232,7 @@ define KernelPackage/fb-sys-ram
 endef
 
 define KernelPackage/fb-sys-ram/description
- Kernel support for framebuffers in system RAM
+  Kernel support for framebuffers in system RAM
 endef
 
 $(eval $(call KernelPackage,fb-sys-ram))
@@ -448,8 +448,8 @@ define KernelPackage/drm-kms-helper
   DEPENDS:=@DISPLAY_SUPPORT +kmod-drm +kmod-fb +kmod-fb-sys-fops +kmod-fb-cfb-copyarea \
 	+kmod-fb-cfb-fillrect +kmod-fb-cfb-imgblt +kmod-fb-sys-ram
   KCONFIG:= \
-    CONFIG_DRM_KMS_HELPER \
-    CONFIG_DRM_KMS_FB_HELPER=y
+	CONFIG_DRM_KMS_HELPER \
+	CONFIG_DRM_KMS_FB_HELPER=y
   FILES:=$(LINUX_DIR)/drivers/gpu/drm/drm_kms_helper.ko
   AUTOLOAD:=$(call AutoProbe,drm_kms_helper)
 endef
@@ -481,7 +481,7 @@ define KernelPackage/drm-vram-helper
   HIDDEN:=1
   TITLE:=DRM helpers for VRAM memory management
   DEPENDS:=@DISPLAY_SUPPORT \
-    +kmod-drm-kms-helper +kmod-drm-ttm-helper
+	+kmod-drm-kms-helper +kmod-drm-ttm-helper
   KCONFIG:=CONFIG_DRM_VRAM_HELPER
   FILES:=$(LINUX_DIR)/drivers/gpu/drm/drm_vram_helper.ko
   AUTOLOAD:=$(call AutoProbe,drm_vram_helper)
@@ -708,7 +708,7 @@ define KernelPackage/drm-panel-tc358762
 endef
 
 define KernelPackage/drm-panel-tc358762/description
- Toshiba TC358762 DSI/DPI bridge driver
+  Toshiba TC358762 DSI/DPI bridge driver
 endef
 
 $(eval $(call KernelPackage,drm-panel-tc358762))
@@ -751,7 +751,7 @@ define KernelPackage/video-core
 endef
 
 define KernelPackage/video-core/description
- Kernel modules for Video4Linux support
+  Kernel modules for Video4Linux support
 endef
 
 $(eval $(call KernelPackage,video-core))
@@ -763,13 +763,13 @@ define AddDepends/video
 endef
 
 define AddDepends/camera
-$(AddDepends/video)
+  $(AddDepends/video)
   KCONFIG+=CONFIG_MEDIA_USB_SUPPORT=y \
 	 CONFIG_MEDIA_CAMERA_SUPPORT=y
 endef
 
 define AddDepends/framegrabber
-$(AddDepends/video)
+  $(AddDepends/video)
   KCONFIG+=CONFIG_MEDIA_PCI_SUPPORT=y
 endef
 
@@ -791,7 +791,7 @@ define KernelPackage/video-videobuf2
 endef
 
 define KernelPackage/video-videobuf2/description
- Kernel modules that implements three basic types of media buffers.
+  Kernel modules that implements three basic types of media buffers.
 endef
 
 $(eval $(call KernelPackage,video-videobuf2))
@@ -831,7 +831,7 @@ define KernelPackage/video-pwc
 endef
 
 define KernelPackage/video-pwc/description
- Kernel modules for supporting Philips USB based cameras
+  Kernel modules for supporting Philips USB based cameras
 endef
 
 $(eval $(call KernelPackage,video-pwc))
@@ -848,7 +848,7 @@ define KernelPackage/video-uvc
 endef
 
 define KernelPackage/video-uvc/description
- Kernel modules for supporting USB Video Class (UVC) devices
+  Kernel modules for supporting USB Video Class (UVC) devices
 endef
 
 $(eval $(call KernelPackage,video-uvc))
@@ -887,7 +887,7 @@ define KernelPackage/video-gspca-conex
 endef
 
 define KernelPackage/video-gspca-conex/description
- The Conexant Camera Driver (conex) kernel module
+  The Conexant Camera Driver (conex) kernel module
 endef
 
 $(eval $(call KernelPackage,video-gspca-conex))
@@ -902,7 +902,7 @@ define KernelPackage/video-gspca-etoms
 endef
 
 define KernelPackage/video-gspca-etoms/description
- The Etoms USB Camera Driver (etoms) kernel module
+  The Etoms USB Camera Driver (etoms) kernel module
 endef
 
 $(eval $(call KernelPackage,video-gspca-etoms))
@@ -917,7 +917,7 @@ define KernelPackage/video-gspca-finepix
 endef
 
 define KernelPackage/video-gspca-finepix/description
- The Fujifilm FinePix USB V4L2 driver (finepix) kernel module
+  The Fujifilm FinePix USB V4L2 driver (finepix) kernel module
 endef
 
 $(eval $(call KernelPackage,video-gspca-finepix))
@@ -932,7 +932,7 @@ define KernelPackage/video-gspca-mars
 endef
 
 define KernelPackage/video-gspca-mars/description
- The Mars USB Camera Driver (mars) kernel module
+  The Mars USB Camera Driver (mars) kernel module
 endef
 
 $(eval $(call KernelPackage,video-gspca-mars))
@@ -947,7 +947,7 @@ define KernelPackage/video-gspca-mr97310a
 endef
 
 define KernelPackage/video-gspca-mr97310a/description
- The Mars-Semi MR97310A USB Camera Driver (mr97310a) kernel module
+  The Mars-Semi MR97310A USB Camera Driver (mr97310a) kernel module
 endef
 
 $(eval $(call KernelPackage,video-gspca-mr97310a))
@@ -962,7 +962,7 @@ define KernelPackage/video-gspca-ov519
 endef
 
 define KernelPackage/video-gspca-ov519/description
- The OV519 USB Camera Driver (ov519) kernel module
+  The OV519 USB Camera Driver (ov519) kernel module
 endef
 
 $(eval $(call KernelPackage,video-gspca-ov519))
@@ -977,7 +977,7 @@ define KernelPackage/video-gspca-ov534
 endef
 
 define KernelPackage/video-gspca-ov534/description
- The OV534 USB Camera Driver (ov534) kernel module
+  The OV534 USB Camera Driver (ov534) kernel module
 endef
 
 $(eval $(call KernelPackage,video-gspca-ov534))
@@ -992,7 +992,7 @@ define KernelPackage/video-gspca-ov534-9
 endef
 
 define KernelPackage/video-gspca-ov534-9/description
- The OV534-9 USB Camera Driver (ov534_9) kernel module
+  The OV534-9 USB Camera Driver (ov534_9) kernel module
 endef
 
 $(eval $(call KernelPackage,video-gspca-ov534-9))
@@ -1007,7 +1007,7 @@ define KernelPackage/video-gspca-pac207
 endef
 
 define KernelPackage/video-gspca-pac207/description
- The Pixart PAC207 USB Camera Driver (pac207) kernel module
+  The Pixart PAC207 USB Camera Driver (pac207) kernel module
 endef
 
 $(eval $(call KernelPackage,video-gspca-pac207))
@@ -1022,7 +1022,7 @@ define KernelPackage/video-gspca-pac7302
 endef
 
 define KernelPackage/video-gspca-pac7302/description
- The Pixart PAC7302 USB Camera Driver (pac7302) kernel module
+  The Pixart PAC7302 USB Camera Driver (pac7302) kernel module
 endef
 
 $(eval $(call KernelPackage,video-gspca-pac7302))
@@ -1037,7 +1037,7 @@ define KernelPackage/video-gspca-pac7311
 endef
 
 define KernelPackage/video-gspca-pac7311/description
- The Pixart PAC7311 USB Camera Driver (pac7311) kernel module
+  The Pixart PAC7311 USB Camera Driver (pac7311) kernel module
 endef
 
 $(eval $(call KernelPackage,video-gspca-pac7311))
@@ -1052,7 +1052,7 @@ define KernelPackage/video-gspca-se401
 endef
 
 define KernelPackage/video-gspca-se401/description
- The SE401 USB Camera Driver kernel module
+  The SE401 USB Camera Driver kernel module
 endef
 
 $(eval $(call KernelPackage,video-gspca-se401))
@@ -1067,7 +1067,7 @@ define KernelPackage/video-gspca-sn9c20x
 endef
 
 define KernelPackage/video-gspca-sn9c20x/description
- The SN9C20X USB Camera Driver (sn9c20x) kernel module
+  The SN9C20X USB Camera Driver (sn9c20x) kernel module
 endef
 
 $(eval $(call KernelPackage,video-gspca-sn9c20x))
@@ -1082,7 +1082,7 @@ define KernelPackage/video-gspca-sonixb
 endef
 
 define KernelPackage/video-gspca-sonixb/description
- The SONIX Bayer USB Camera Driver (sonixb) kernel module
+  The SONIX Bayer USB Camera Driver (sonixb) kernel module
 endef
 
 $(eval $(call KernelPackage,video-gspca-sonixb))
@@ -1097,7 +1097,7 @@ define KernelPackage/video-gspca-sonixj
 endef
 
 define KernelPackage/video-gspca-sonixj/description
- The SONIX JPEG USB Camera Driver (sonixj) kernel module
+  The SONIX JPEG USB Camera Driver (sonixj) kernel module
 endef
 
 $(eval $(call KernelPackage,video-gspca-sonixj))
@@ -1112,7 +1112,7 @@ define KernelPackage/video-gspca-spca500
 endef
 
 define KernelPackage/video-gspca-spca500/description
- The SPCA500 USB Camera Driver (spca500) kernel module
+  The SPCA500 USB Camera Driver (spca500) kernel module
 endef
 
 $(eval $(call KernelPackage,video-gspca-spca500))
@@ -1127,7 +1127,7 @@ define KernelPackage/video-gspca-spca501
 endef
 
 define KernelPackage/video-gspca-spca501/description
- The SPCA501 USB Camera Driver (spca501) kernel module
+  The SPCA501 USB Camera Driver (spca501) kernel module
 endef
 
 $(eval $(call KernelPackage,video-gspca-spca501))
@@ -1142,7 +1142,7 @@ define KernelPackage/video-gspca-spca505
 endef
 
 define KernelPackage/video-gspca-spca505/description
- The SPCA505 USB Camera Driver (spca505) kernel module
+  The SPCA505 USB Camera Driver (spca505) kernel module
 endef
 
 $(eval $(call KernelPackage,video-gspca-spca505))
@@ -1157,7 +1157,7 @@ define KernelPackage/video-gspca-spca506
 endef
 
 define KernelPackage/video-gspca-spca506/description
- The SPCA506 USB Camera Driver (spca506) kernel module
+  The SPCA506 USB Camera Driver (spca506) kernel module
 endef
 
 $(eval $(call KernelPackage,video-gspca-spca506))
@@ -1172,7 +1172,7 @@ define KernelPackage/video-gspca-spca508
 endef
 
 define KernelPackage/video-gspca-spca508/description
- The SPCA508 USB Camera Driver (spca508) kernel module
+  The SPCA508 USB Camera Driver (spca508) kernel module
 endef
 
 $(eval $(call KernelPackage,video-gspca-spca508))
@@ -1187,7 +1187,7 @@ define KernelPackage/video-gspca-spca561
 endef
 
 define KernelPackage/video-gspca-spca561/description
- The SPCA561 USB Camera Driver (spca561) kernel module
+  The SPCA561 USB Camera Driver (spca561) kernel module
 endef
 
 $(eval $(call KernelPackage,video-gspca-spca561))
@@ -1202,7 +1202,7 @@ define KernelPackage/video-gspca-sq905
 endef
 
 define KernelPackage/video-gspca-sq905/description
- The SQ Technologies SQ905 based USB Camera Driver (sq905) kernel module
+  The SQ Technologies SQ905 based USB Camera Driver (sq905) kernel module
 endef
 
 $(eval $(call KernelPackage,video-gspca-sq905))
@@ -1217,7 +1217,7 @@ define KernelPackage/video-gspca-sq905c
 endef
 
 define KernelPackage/video-gspca-sq905c/description
- The SQ Technologies SQ905C based USB Camera Driver (sq905c) kernel module
+  The SQ Technologies SQ905C based USB Camera Driver (sq905c) kernel module
 endef
 
 $(eval $(call KernelPackage,video-gspca-sq905c))
@@ -1232,7 +1232,7 @@ define KernelPackage/video-gspca-sq930x
 endef
 
 define KernelPackage/video-gspca-sq930x/description
- The SQ Technologies SQ930X based USB Camera Driver (sq930x) kernel module
+  The SQ Technologies SQ930X based USB Camera Driver (sq930x) kernel module
 endef
 
 $(eval $(call KernelPackage,video-gspca-sq930x))
@@ -1247,7 +1247,7 @@ define KernelPackage/video-gspca-stk014
 endef
 
 define KernelPackage/video-gspca-stk014/description
- The Syntek DV4000 (STK014) USB Camera Driver (stk014) kernel module
+  The Syntek DV4000 (STK014) USB Camera Driver (stk014) kernel module
 endef
 
 $(eval $(call KernelPackage,video-gspca-stk014))
@@ -1262,7 +1262,7 @@ define KernelPackage/video-gspca-sunplus
 endef
 
 define KernelPackage/video-gspca-sunplus/description
- The SUNPLUS USB Camera Driver (sunplus) kernel module
+  The SUNPLUS USB Camera Driver (sunplus) kernel module
 endef
 
 $(eval $(call KernelPackage,video-gspca-sunplus))
@@ -1277,7 +1277,7 @@ define KernelPackage/video-gspca-t613
 endef
 
 define KernelPackage/video-gspca-t613/description
- The T613 (JPEG Compliance) USB Camera Driver (t613) kernel module
+  The T613 (JPEG Compliance) USB Camera Driver (t613) kernel module
 endef
 
 $(eval $(call KernelPackage,video-gspca-t613))
@@ -1292,7 +1292,7 @@ define KernelPackage/video-gspca-tv8532
 endef
 
 define KernelPackage/video-gspca-tv8532/description
- The TV8532 USB Camera Driver (tv8532) kernel module
+  The TV8532 USB Camera Driver (tv8532) kernel module
 endef
 
 $(eval $(call KernelPackage,video-gspca-tv8532))
@@ -1307,7 +1307,7 @@ define KernelPackage/video-gspca-vc032x
 endef
 
 define KernelPackage/video-gspca-vc032x/description
- The VC032X USB Camera Driver (vc032x) kernel module
+  The VC032X USB Camera Driver (vc032x) kernel module
 endef
 
 $(eval $(call KernelPackage,video-gspca-vc032x))
@@ -1322,7 +1322,7 @@ define KernelPackage/video-gspca-zc3xx
 endef
 
 define KernelPackage/video-gspca-zc3xx/description
- The ZC3XX USB Camera Driver (zc3xx) kernel module
+  The ZC3XX USB Camera Driver (zc3xx) kernel module
 endef
 
 $(eval $(call KernelPackage,video-gspca-zc3xx))
@@ -1337,7 +1337,7 @@ define KernelPackage/video-gspca-m5602
 endef
 
 define KernelPackage/video-gspca-m5602/description
- The ALi USB m5602 Camera Driver (m5602) kernel module
+  The ALi USB m5602 Camera Driver (m5602) kernel module
 endef
 
 $(eval $(call KernelPackage,video-gspca-m5602))
@@ -1352,7 +1352,7 @@ define KernelPackage/video-gspca-stv06xx
 endef
 
 define KernelPackage/video-gspca-stv06xx/description
- The STV06XX USB Camera Driver (stv06xx) kernel module
+  The STV06XX USB Camera Driver (stv06xx) kernel module
 endef
 
 $(eval $(call KernelPackage,video-gspca-stv06xx))
@@ -1367,7 +1367,7 @@ define KernelPackage/video-gspca-gl860
 endef
 
 define KernelPackage/video-gspca-gl860/description
- The GL860 USB Camera Driver (gl860) kernel module
+  The GL860 USB Camera Driver (gl860) kernel module
 endef
 
 $(eval $(call KernelPackage,video-gspca-gl860))
@@ -1382,7 +1382,7 @@ define KernelPackage/video-gspca-jeilinj
 endef
 
 define KernelPackage/video-gspca-jeilinj/description
- The JEILINJ USB Camera Driver (jeilinj) kernel module
+  The JEILINJ USB Camera Driver (jeilinj) kernel module
 endef
 
 $(eval $(call KernelPackage,video-gspca-jeilinj))
@@ -1397,7 +1397,7 @@ define KernelPackage/video-gspca-konica
 endef
 
 define KernelPackage/video-gspca-konica/description
- The Konica USB Camera Driver (konica) kernel module
+  The Konica USB Camera Driver (konica) kernel module
 endef
 
 $(eval $(call KernelPackage,video-gspca-konica))
@@ -1412,8 +1412,8 @@ define KernelPackage/video-mem2mem
   HIDDEN:=1
   DEPENDS:=+kmod-video-videobuf2
   KCONFIG:= \
-    CONFIG_V4L_MEM2MEM_DRIVERS=y \
-    CONFIG_V4L2_MEM2MEM_DEV
+	CONFIG_V4L_MEM2MEM_DRIVERS=y \
+	CONFIG_V4L2_MEM2MEM_DEV
   FILES:= $(LINUX_DIR)/drivers/media/v4l2-core/v4l2-mem2mem.ko
   AUTOLOAD:=$(call AutoLoad,66,v4l2-mem2mem)
   $(call AddDepends/video)
@@ -1464,18 +1464,18 @@ define KernelPackage/video-coda
   TITLE:=i.MX VPU support
   DEPENDS:=@(TARGET_imx&&TARGET_imx_cortexa9) +kmod-video-mem2mem +kmod-video-dma-contig
   KCONFIG:= \
-  	CONFIG_VIDEO_CODA \
-  	CONFIG_VIDEO_IMX_VDOA
+	CONFIG_VIDEO_CODA \
+	CONFIG_VIDEO_IMX_VDOA
   FILES:= \
-  	$(LINUX_DIR)/drivers/media/platform/chips-media/coda/coda-vpu.ko \
-  	$(LINUX_DIR)/drivers/media/platform/chips-media/coda/imx-vdoa.ko \
- 	$(LINUX_DIR)/drivers/media/v4l2-core/v4l2-jpeg.ko
+	$(LINUX_DIR)/drivers/media/platform/chips-media/coda/coda-vpu.ko \
+	$(LINUX_DIR)/drivers/media/platform/chips-media/coda/imx-vdoa.ko \
+	$(LINUX_DIR)/drivers/media/v4l2-core/v4l2-jpeg.ko
   AUTOLOAD:=$(call AutoProbe,coda-vpu imx-vdoa v4l2-jpeg)
   $(call AddDepends/video)
 endef
 
 define KernelPackage/video-coda/description
- The i.MX Video Processing Unit (VPU) kernel module
+  The i.MX Video Processing Unit (VPU) kernel module
 endef
 
 $(eval $(call KernelPackage,video-coda))
@@ -1490,9 +1490,9 @@ define KernelPackage/video-pxp
 endef
 
 define KernelPackage/video-pxp/description
- The i.MX Pixel Pipeline (PXP) kernel module
- This enables hardware accelerated support for image
- Colour Conversion, Scaling and Rotation
+  The i.MX Pixel Pipeline (PXP) kernel module
+  This enables hardware accelerated support for image
+  Colour Conversion, Scaling and Rotation
 endef
 
 $(eval $(call KernelPackage,video-pxp))
@@ -1508,7 +1508,7 @@ define KernelPackage/video-tw686x
 endef
 
 define KernelPackage/video-tw686x/description
- The Intersil/Techwell TW686x kernel module
+  The Intersil/Techwell TW686x kernel module
 endef
 
 $(eval $(call KernelPackage,video-tw686x))
